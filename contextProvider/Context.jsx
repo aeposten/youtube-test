@@ -26,7 +26,6 @@ function ContextProvider({ children }) {
     e.preventDefault();
     fetch(URL, {
       headers: {
-        "Access-Control-Allow-Methods": "*",
         "Access-Control-Allow-Origin": "*",
       },
     })
