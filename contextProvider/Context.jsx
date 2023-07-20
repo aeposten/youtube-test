@@ -21,21 +21,24 @@ function ContextProvider({ children }) {
     setSearchValue(e.target.value);
   }
 
-  async function searchForVideos(e) {
+function searchForVideos(e) {
+
+
     let conversationStr = "";
     e.preventDefault();
-    const response = await fetch(URL, {
-      method: "POST",
-      headers: {
-        "Access-Control-Allow-Methods:": "*",
-        "Access-Control-Allow-Origin": "*",
-        "content-type": "text/plain",
-      },
-      body: conversationStr,
-    });
+    fetch(URL, {
+        method: "POST",
+        headers: {
+          "Access-Control-Allow-Methods:": "*",
+          "Access-Control-Allow-Origin": "*",
+          "content-type": "text/plain",
+        },
+        body: conversationStr,
+    })
+        .then((response) => response.json())
+        .then((data) => console.log(data))
 
-    const data = await response.json();
-    console.log(data);
+
     // fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&key=${KEY}&maxResults=10&channelId=${channelId}&q=${searchValue}`)
     //     .then(res => {
     //         if (!res.ok) {
