@@ -1,9 +1,21 @@
 // Docs on event and context https://docs.netlify.com/functions/build/#code-your-function-2
 const handler = async (event) => {
   try {
+    if (event.httpMethod === "OPTIONS") {
+      return {
+        statusCode: 200,
+        headers: {
+          "Access-Control-Allow-Headers": "*",
+          "Access-Control-Allow-Origin": "*", // Allow from anywhere
+          "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
+        },
+        body: "",
+      };
+    }
+
     const { channelId, searchValue } = JSON.parse(event.body);
 
-    const API_KEY = "AIzaSyC-0bMXoBYRfR1Gp5k1JCVNy38cgIX_IHk";
+    const API_KEY = "AIzaSyC-0bMXoBYRfR1Gp5k1JCVNy38cgIX_IHk"; // Replace with your YouTube Data API key
 
     const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&key=${API_KEY}&maxResults=10&channelId=${channelId}&q=${searchValue}`;
 
@@ -24,4 +36,4 @@ const handler = async (event) => {
   }
 };
 
-module.exports = { handler };
+const API_KEY = "AIzaSyC-0bMXoBYRfR1Gp5k1JCVNy38cgIX_IHk";
