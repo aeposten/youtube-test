@@ -27,6 +27,7 @@ function ContextProvider({ children }) {
     const response = await fetch(URL, {
       method: "POST",
       headers: {
+        "Access-Control-Allow-Methods:": "*",
         "Access-Control-Allow-Origin": "*",
         "content-type": "text/plain",
       },
