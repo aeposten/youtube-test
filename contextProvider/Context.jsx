@@ -21,6 +21,7 @@ function ContextProvider({children}) {
     }
         
     async function searchForVideos(e) {
+        let conversationStr = ''
         e.preventDefault()
         const response  = await fetch(URL, {
             method: 'POST',
