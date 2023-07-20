@@ -23,8 +23,6 @@ function ContextProvider({ children }) {
 
 function searchForVideos(e) {
 
-
-    let conversationStr = "";
     e.preventDefault();
     fetch(URL, {
         method: "POST",
@@ -32,8 +30,7 @@ function searchForVideos(e) {
           "Access-Control-Allow-Methods:": "*",
           "Access-Control-Allow-Origin": "*",
           "content-type": "text/plain",
-        },
-        body: conversationStr,
+        }
     })
         .then((response) => response.json())
         .then((data) => console.log(data))
