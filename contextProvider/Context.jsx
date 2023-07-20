@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import channelData from '../utils/channelData'
 const Context = React.createContext()
-
+const URL = 'https://tangerine-torte-2fd1e5.netlify.app/.netlify/functions/fetch-videos'
 const KEY = 'AIzaSyC-0bMXoBYRfR1Gp5k1JCVNy38cgIX_IHk'
 function ContextProvider({children}) {
     const [channelId, setChannelId] = useState(channelData[0].id)
@@ -20,36 +20,46 @@ function ContextProvider({children}) {
         setSearchValue(e.target.value)
     }
         
-    function searchForVideos(e) {
+    async function searchForVideos(e) {
         e.preventDefault()
-        fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&key=${KEY}&maxResults=10&channelId=${channelId}&q=${searchValue}`)
-            .then(res => {
-                if (!res.ok) {
-                    setHasData(false)
-                    console.log('res.ok === false')
-                    setErrorMessage('The search engine is currently unavailable. Please try again later.')
-                }
-                else {
-                    return res.json()
-                }
-            })
-            .then(data => {
-                if (!data) {
-                    setHasData(false)
-                    console.log('No data found')
-                    setErrorMessage('The search engine is currently unavailable. Please try again later.')
-                    return
-                }
-                else if (!data.items.length) {
-                    setHasData(false)
-                    console.log('No data found')
-                    setErrorMessage('Sorry, there are no videos matching your search. Please try another search.')
-                }
-                else {
-                    setHasData(true)
-                    setVideosData(data.items)
-                }
-            })
+        const response  = await fetch(URL, {
+            method: 'POST',
+            headers: {
+                'content-type': 'text/plain',
+            },
+            body: conversationStr,
+        })
+
+        const data = await response.json();
+        console.log(data)
+        // fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&key=${KEY}&maxResults=10&channelId=${channelId}&q=${searchValue}`)
+        //     .then(res => {
+        //         if (!res.ok) {
+        //             setHasData(false)
+        //             console.log('res.ok === false')
+        //             setErrorMessage('The search engine is currently unavailable. Please try again later.')
+        //         }
+        //         else {
+        //             return res.json()
+        //         }
+        //     })
+        //     .then(data => {
+        //         if (!data) {
+        //             setHasData(false)
+        //             console.log('No data found')
+        //             setErrorMessage('The search engine is currently unavailable. Please try again later.')
+        //             return
+        //         }
+        //         else if (!data.items.length) {
+        //             setHasData(false)
+        //             console.log('No data found')
+        //             setErrorMessage('Sorry, there are no videos matching your search. Please try another search.')
+        //         }
+        //         else {
+        //             setHasData(true)
+        //             setVideosData(data.items)
+        //         }
+        //     })
     }
         
     return (
