@@ -20,6 +20,7 @@ function ContextProvider({ children }) {
   }
 
   function searchForVideos(e) {
+    e.preventDefault()
     const URL = "https://tangerine-torte-2fd1e5.netlify.app/.netlify/functions/fetch-videos";
   
     fetch(URL, {
