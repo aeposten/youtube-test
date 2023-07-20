@@ -20,10 +20,8 @@ function ContextProvider({ children }) {
   }
 
   function searchForVideos(e) {
-    e.preventDefault();
-    const URL =
-      "https://tangerine-torte-2fd1e5.netlify.app/.netlify/functions/fetch-videos";
-
+    const URL = "https://tangerine-torte-2fd1e5.netlify.app/.netlify/functions/fetch-videos";
+  
     fetch(URL, {
       method: "POST",
       headers: {
@@ -63,7 +61,6 @@ function ContextProvider({ children }) {
       });
   }
 
-  console.log;
   //   function searchForVideos(e) {
   //     const URL =
   //       "https://tangerine-torte-2fd1e5.netlify.app/.netlify/functions/fetch-videos";
