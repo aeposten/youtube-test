@@ -21,20 +21,18 @@ function ContextProvider({ children }) {
     setSearchValue(e.target.value);
   }
 
-function searchForVideos(e) {
-
+  function searchForVideos(e) {
     e.preventDefault();
     fetch(URL, {
-        method: "POST",
-        headers: {
-          "Access-Control-Allow-Methods:": "*",
-          "Access-Control-Allow-Origin": "*",
-          "content-type": "text/plain",
-        }
+      method: "POST",
+      headers: {
+        "Access-Control-Allow-Methods:": "*",
+        "Access-Control-Allow-Origin": "*",
+        "content-type": "text/plain",
+      },
     })
-        .then((response) => response.json())
-        .then((data) => console.log(data))
-
+      .then((response) => response.json())
+      .then((data) => console.log(data));
 
     // fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&key=${KEY}&maxResults=10&channelId=${channelId}&q=${searchValue}`)
     //     .then(res => {
