@@ -3,7 +3,7 @@ const handler = async (event) => {
   try {
     const { channelId, searchValue } = JSON.parse(event.body);
 
-    const API_KEY = "AIzaSyC-0bMXoBYRfR1Gp5k1JCVNy38cgIX_IHk"; // Replace with your YouTube Data API key
+    const API_KEY = "AIzaSyC-0bMXoBYRfR1Gp5k1JCVNy38cgIX_IHk";
 
     const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&key=${API_KEY}&maxResults=10&channelId=${channelId}&q=${searchValue}`;
 
