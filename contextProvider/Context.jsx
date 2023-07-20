@@ -29,7 +29,7 @@ function ContextProvider({ children }) {
       headers: {
         "Access-Control-Allow-Methods:": "*",
         "Access-Control-Allow-Origin": "*",
-        "content-type": "text/plain",
+        // "content-type": "application/json",
       },
       body: conversationStr,
     })
