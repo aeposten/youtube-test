@@ -25,13 +25,10 @@ function ContextProvider({ children }) {
     let conversationStr = "";
     e.preventDefault();
     fetch(URL, {
-      method: "POST",
       headers: {
-        "Access-Control-Allow-Methods:": "*",
+        "Access-Control-Allow-Methods": "*",
         "Access-Control-Allow-Origin": "*",
-        // "content-type": "application/json",
       },
-      body: conversationStr,
     })
       .then((response) => response.json())
       .then((data) => console.log(data));
