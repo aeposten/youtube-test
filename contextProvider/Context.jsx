@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import channelData from '../utils/channelData'
 const Context = React.createContext()
 
+const KEY = 'AIzaSyC-0bMXoBYRfR1Gp5k1JCVNy38cgIX_IHk'
 function ContextProvider({children}) {
     const [channelId, setChannelId] = useState(channelData[0].id)
     const [searchValue, setSearchValue] = useState('')
@@ -21,7 +22,7 @@ function ContextProvider({children}) {
         
     function searchForVideos(e) {
         e.preventDefault()
-        fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&key=AIzaSyCPdEMvrI00DZ3c3KGgIjDjQhUcgkqKMno&maxResults=10&channelId=${channelId}&q=${searchValue}`)
+        fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&key=${KEY}&maxResults=10&channelId=${channelId}&q=${searchValue}`)
             .then(res => {
                 if (!res.ok) {
                     setHasData(false)
