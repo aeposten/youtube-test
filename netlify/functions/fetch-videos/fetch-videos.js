@@ -1,18 +1,26 @@
 // Docs on event and context https://docs.netlify.com/functions/build/#code-your-function-2
 const handler = async (event) => {
   try {
-    const subject = event.queryStringParameters.name || 'World'
+    const { channelId, searchValue } = JSON.parse(event.body);
+
+    const API_KEY = "AIzaSyC-0bMXoBYRfR1Gp5k1JCVNy38cgIX_IHk"; // Replace with your YouTube Data API key
+
+    const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&key=${API_KEY}&maxResults=10&channelId=${channelId}&q=${searchValue}`;
+
+    const response = await fetch(url);
+    const data = await response.json();
+
     return {
       statusCode: 200,
       headers: {
         "Access-Control-Allow-Headers": "*",
-        "Access-Control-Allow-Origin": "*", // Allow from anywhere 
-    },
-      body: JSON.stringify({ message: `Hello ${subject}` }),
-    }
+        "Access-Control-Allow-Origin": "*",
+      },
+      body: JSON.stringify(data),
+    };
   } catch (error) {
-    return { statusCode: 500, body: error.toString() }
+    return { statusCode: 500, body: error.toString() };
   }
-}
+};
 
-module.exports = { handler }
+module.exports = { handler };
