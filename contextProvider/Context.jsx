@@ -27,7 +27,7 @@ function ContextProvider({children}) {
             method: 'POST',
             headers: {
                 'content-type': 'text/plain',
-                'access-control-allow-origin': '*',
+                'Access-Control-Allow-Origin': '*',
             },
             body: conversationStr,
         })
