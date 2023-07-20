@@ -24,11 +24,7 @@ function ContextProvider({ children }) {
   function searchForVideos(e) {
     let conversationStr = "";
     e.preventDefault();
-    fetch(URL, {
-      headers: {
-        "Access-Control-Allow-Origin": "*",
-      },
-    })
+    fetch(URL)
       .then((response) => response.json())
       .then((data) => console.log(data));
 
