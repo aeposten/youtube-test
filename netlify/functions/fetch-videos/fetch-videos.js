@@ -5,9 +5,9 @@ exports.handler = async (event) => {
       return {
         statusCode: 200,
         headers: {
-          // "Access-Control-Allow-Headers": "*",
+          "Access-Control-Allow-Headers": "*",
           "Access-Control-Allow-Origin": "https://6501c27678d0300008f40e1d--tangerine-torte-2fd1e5.netlify.app",
-          "Access-Control-Allow-Origin": "*", // Allow from anywhere
+          // "Access-Control-Allow-Origin": "*", // Allow from anywhere
           "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
         },
         body: "",
