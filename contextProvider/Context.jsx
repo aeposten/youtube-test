@@ -1,5 +1,7 @@
 import React, { useState } from "react";
+import axios from 'axios';
 import channelData from "../utils/channelData";
+
 const Context = React.createContext();
 
 function ContextProvider({ children }) {
@@ -23,47 +25,37 @@ function ContextProvider({ children }) {
     e.preventDefault()
     const URL = "https://tangerine-torte-2fd1e5.netlify.app/.netlify/functions/fetch-videos";
   
-    fetch(URL, {
-      method: "POST",
+    axios.post(URL, { channelId, searchValue }, {
       headers: {
         "Content-Type": "application/json",
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Headers": "*",
-      },
-      body: JSON.stringify({ channelId, searchValue }),
+      }
     })
-      .then((res) => {
-        if (!res.ok) {
-          setHasData(false);
-          console.log("res.ok === false");
-          setErrorMessage(
-            "The search engine is currently unavailable. Please try again later."
-          );
-        } else {
-          return res.json();
-        }
-      })
-      .then((data) => {
-        if (!data) {
-          setHasData(false);
-          console.log("No data found");
-          setErrorMessage(
-            "The search engine is currently unavailable. Please try again later."
-          );
-          return;
-        } else if (!data.items.length) {
-          setHasData(false);
-          console.log("No data found");
-          setErrorMessage(
-            "Sorry, there are no videos matching your search. Please try another search."
-          );
-        } else {
-          setHasData(true);
-          setVideosData(data.items);
-        }
-      });
+    .then((res) => {
+      if (!res.data) {
+        setHasData(false);
+        setErrorMessage(
+          "The search engine is currently unavailable. Please try again later."
+        );
+        return;
+      } else if (!res.data.items || !res.data.items.length) {
+        setHasData(false);
+        setErrorMessage(
+          "Sorry, there are no videos matching your search. Please try another search."
+        );
+      } else {
+        setHasData(true);
+        setVideosData(res.data.items);
+      }
+    })
+    .catch((error) => {
+      setHasData(false);
+      setErrorMessage(
+        "The search engine is currently unavailable. Please try again later."
+      );
+    });
   }
-
 
   return (
     <Context.Provider
