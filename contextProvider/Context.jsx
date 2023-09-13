@@ -28,8 +28,9 @@ function ContextProvider({ children }) {
     axios.post(URL, { channelId, searchValue }, {
       headers: {
         "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Headers": "*",
+
+        "Access-Control-Allow-Origin": "*",
       }
     })
     .then((res) => {
