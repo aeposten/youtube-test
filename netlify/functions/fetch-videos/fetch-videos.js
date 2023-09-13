@@ -1,6 +1,7 @@
 const axios = require('axios');
 
 exports.handler = async (event) => {
+  console.log("request")
   try {
     if (event.httpMethod === "OPTIONS") {
       return {

@@ -29,7 +29,6 @@ function ContextProvider({ children }) {
       headers: {
         "Content-Type": "application/json",
         "Access-Control-Allow-Headers": "*",
-
         "Access-Control-Allow-Origin": "*",
       }
     })
