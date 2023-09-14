@@ -1,4 +1,6 @@
 require("dotenv").config();
+const process = require("process");
+
 exports.handler = async (event) => {
   try {
     // Handle CORS preflight request.
