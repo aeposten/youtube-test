@@ -22,7 +22,7 @@ exports.handler = async (event) => {
           "Access-Control-Allow-Origin": "*", // Allow from anywhere
           "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
         },
-        body: JSON.stringify(response.data),
+        body: JSON.stringify({message: "Hello" + name}),
       };
     }
 
