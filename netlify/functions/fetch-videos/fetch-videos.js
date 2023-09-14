@@ -13,6 +13,17 @@ exports.handler = async (event) => {
         },
         body: "",
       };
+    } else if (event.httpMethod === "POST") {
+      const {name} = JSON.parse(event.body)
+      return {
+        statusCode: 200,
+        headers: {
+          "Access-Control-Allow-Headers": "*",
+          "Access-Control-Allow-Origin": "*", // Allow from anywhere
+          "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
+        },
+        body: JSON.stringify(response.data),
+      };
     }
 
     const { channelId, searchValue } = JSON.parse(event.body);
