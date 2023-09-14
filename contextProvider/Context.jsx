@@ -28,8 +28,6 @@ function ContextProvider({ children }) {
     axios.post(URL, { channelId, searchValue }, {
       headers: {
         "Content-Type": "application/json",
-        "Access-Control-Allow-Headers": "*",
-        "Access-Control-Allow-Origin": "*",
       }
     })
     .then((res) => {
@@ -44,6 +42,7 @@ function ContextProvider({ children }) {
         setErrorMessage(
           "Sorry, there are no videos matching your search. Please try another search."
         );
+        console.error(error)
       } else {
         setHasData(true);
         setVideosData(res.data.items);
