@@ -42,7 +42,7 @@ function ContextProvider({ children }) {
         setErrorMessage(
           "Sorry, there are no videos matching your search. Please try another search."
         );
-        console.error(error)
+        console.log(res.data)
       } else {
         setHasData(true);
         setVideosData(res.data.items);
