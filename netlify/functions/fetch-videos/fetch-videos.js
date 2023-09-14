@@ -1,6 +1,3 @@
-require("dotenv").config();
-const process = require("process");
-
 exports.handler = async (event) => {
   try {
     // Handle CORS preflight request.
@@ -20,9 +17,9 @@ exports.handler = async (event) => {
     if (event.httpMethod === "POST") {
       const { channelId, searchValue } = JSON.parse(event.body);
 
-      
+      const YOUTUBE_API_KEY = "AIzaSyC-0bMXoBYRfR1Gp5k1JCVNy38cgIX_IHk"
 
-      const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&key=${process.env.YOUTUBE_API_KEY}&maxResults=10&channelId=${channelId}&q=${searchValue}`;
+      const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&key=${YOUTUBE_API_KEY}&maxResults=10&channelId=${channelId}&q=${searchValue}`;
 
       const response = await fetch(url);
       const data = await response.json();
