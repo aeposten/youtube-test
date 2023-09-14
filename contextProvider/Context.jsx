@@ -38,11 +38,12 @@ function ContextProvider({ children }) {
         );
         return;
       } else if (!res.data.items || !res.data.items.length) {
+        console.log(res.data)
         setHasData(false);
         setErrorMessage(
           "Sorry, there are no videos matching your search. Please try another search."
         );
-        console.log(res.data)
+
       } else {
         setHasData(true);
         setVideosData(res.data.items);
